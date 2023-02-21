@@ -1,0 +1,29 @@
+{%extends "layout.html"%}
+
+{%block content%}
+
+<div class="container">
+    {% from "_macro.html" import render_field, render_input %}
+        <form action="/" method="POST">
+          <input type=number name="numEntrada" value="">
+        <input type="submit" name="submit" value="Generar">
+        
+        <br><br>
+      
+        _________________________________________________________________
+       </form>
+       
+       {% if form.numEntrada.data %}
+        <form action="/" method="POST">
+          {% for i in range(0, form.numEntrada.data) %}
+          {{ render_input(name="numero") }}
+          {% endfor %}
+          <input type="submit" name="submit" value="Calcular">
+        </form>
+        {% endif %}
+</div>
+
+</div>
+
+
+{%endblock%}
