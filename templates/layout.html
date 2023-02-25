@@ -45,6 +45,17 @@
         </div>
     </div>
     <div class="container">
+        <!--QUE IMPRIMA EL MENSAJE SI TODO FUE CORRECTO Y VA RECORRIENDO LA LISTA CON ELL FOR-->
+        {%with messages=get_flashed_messages()%}
+        {%if messages%}
+           {%for message in messages%}
+           <div class="alert alert-success">
+                {{message}}
+           </div>
+           {%endfor%}
+        {%endif%}
+        {%endwith%}
+
         {%block content%}
         
         {%endblock%}

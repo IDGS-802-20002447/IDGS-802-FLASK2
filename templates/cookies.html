@@ -1,0 +1,21 @@
+{%extends "layout.html"%}
+{%block content%}
+   
+<div class="col-xs-6">
+ {%from "_macro.html" import render_field%}
+ <!--novalidate para quitar las validaciones de html-->
+ <form action="" method="post" novalidate>
+   <!--Atrapa nuestra clave y luego conseguimos la valdacion-->
+   <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+
+    {{render_field(form.username)}}
+    {{render_field(form.password)}}
+
+    
+    <input type="submit" value="Registrar">
+    
+ </form>
+</div>
+
+
+{%endblock%}
