@@ -1,0 +1,62 @@
+{%extends "layout.html"%}
+{%block content%}
+
+    <h1>Diccionario</h1>
+    <form method="POST" action="" novalidate>
+        {% from "_macro.html" import render_input,render_radio %}
+        <h3>Agregar palabra</h3>
+        {{render_input("english_word","Palabra en ingles", errors=add_form.english_word.errors) }}
+        {{render_input("spanish_word","Palabra en español", errors=add_form.english_word.errors)}}
+        <br>
+        <button type="submit" name="submit" value="Agregar">Agregar</button>
+    </form>
+    {% if success %}
+    <p style="color: green;">Palabras agregada.</p>
+    {% endif %}
+    <form method="POST" action="" novalidate>
+        <h3>Buscar palabra</h3>
+        {{render_input("search_term","Buscar palabra", errors=search_form.search_term.errors)}}
+        {{render_radio(name="search_language",placeholder="Traducir a español",value="english",errors=search_form.search_language.errors)}}
+        {{render_radio(name="search_language",placeholder="Traducir a ingles",value="spanish",errors=search_form.search_language.errors)}}
+        <br>
+        <button type="submit" name="submit" value="Buscar">Buscar</button>
+    </form>
+    
+    
+
+    {% if results %}
+  <h2>Resultados de la búsqueda:</h2>
+  <ul>
+    {% for result in results %}
+      <h5><li>{{ result.english }} - {{ result.spanish }}</li></h5>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No se encontró ninguna palabra en el diccionario.</p>
+{% endif %}
+
+
+  <!--
+    {% if words %}
+    <h2>Palabras</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Inglés</th>
+          <th>Español</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for english, spanish in words.items() %}
+        <tr>
+          <td>{{ english }}</td>
+          <td>{{ spanish }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  --> 
+  {%endblock%}
+
+  

@@ -1,0 +1,7 @@
+hi:hola
+yellow:amarillo
+red:rojo
+blue:azul
+salt:sal
+car:carro
+computer:computadora
