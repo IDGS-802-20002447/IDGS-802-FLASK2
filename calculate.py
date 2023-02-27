@@ -55,7 +55,7 @@ def resistenciaForm():
         result.tolerancia = tolerancia
         result.min=resMin
         result.max=resMax
-        succes_message="Gracias por usar nuestra calculadora {} espero te haya servido la informacion".format(user)
+        succes_message="Gracias por usar nuestra calculadora {} espero te haya servido la informacion.".format(user)
         flash(succes_message)
 
         response = make_response(render_template('calculate.html', form=form, result=result, 
