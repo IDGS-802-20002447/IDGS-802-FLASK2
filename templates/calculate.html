@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  {% from "macros.html" import render_field %}
+
+      <title>Calculadora de Resistencias</title>
+      
+      <style>
+        .black {background-color: black; color: white;}
+        .brown {background-color: brown; color: white;}
+        .red {background-color: red; color: white;}
+        .orange {background-color: orange;}
+        .yellow {background-color: yellow;}
+        .green {background-color: green; color: white;}
+        .blue {background-color: blue; color: white;}
+        .purple {background-color: purple; color: white;}
+        .gray {background-color: gray;}
+        .white {background-color: white;}
+        .gold {background-color: gold; color: white;}
+        .silver {background-color: silver;}
+      </style>
+    <body>
+      <h1 style="text-align: center;">Calculadora de Resistencias</h1>
+      <br>
+     <img  width="300px" src="https://cdn.goconqr.com/uploads/media/image/22049606/desktop_afc8e7b5-984d-4a88-a50a-298ed00bebfd.png" class="center">
+     <br> 
+     <form method="POST" action="" novalidate>
+      <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <table>
+          <tr>
+            <td>{{ render_field(form.band_A) }}</td>
+            <td>{{ render_field(form.band_B) }}</td>
+            <td>{{ render_field(form.band_C) }}</td>
+          </tr>
+          <tr>
+            <td colspan="3">{{ render_field(form.band_D) }}</td>
+          </tr>
+        </table>
+        <br>
+        <button type="submit" class="btn btn-info center" style="width: 150px;">Calcular</button>
+      </form>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
+      {% if result %}
+        <br>
+        <table>
+          <tr>
+            <th>Banda A</th>
+            <th>Banda B</th>
+            <th>Banda C</th>
+            <th>Tolerancia</th>
+            <th>Valor</th>
+            <th>Valor Maximo</th>
+            <th>Valor Minimo</th>
+		      </tr>
+          <tr>
+            <td class="{{ bandA_color }}">{{ bandA_nom }}</td>
+            <td class="{{ bandB_color }}">{{ bandB_nom }}</td>
+            <td class="{{ bandC_color }}">{{ bandC_nom }}</td>
+			      <td class="{{ bandD_color }}">{{ bandD_nom }}</td>
+            <td>{{ result.value }}</td>
+            <td>{{ result.max }}</td>
+            <td>{{ result.min }}</td>
+          </tr>
+
+        </table>
+      {% endif %}
+        <br><br><br>
+    </body>
+  </html>
+{% endblock %}

@@ -6,7 +6,7 @@
  <!--novalidate para quitar las validaciones de html-->
  <form action="" method="post" novalidate>
    <!--Atrapa nuestra clave y luego conseguimos la valdacion-->
-   <input type="hidden" name="csrf_token" value="{{csrf_token()}}"
+   <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
  <div class="from-group">
     {{render_field(form.matricula)}}
     </div>
