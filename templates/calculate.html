@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  {% from "macros.html" import render_field %}
+  {% from "macros.html" import render_field,render_field1 %}
 
       <title>Calculadora de Resistencias</title>
       
@@ -26,6 +26,8 @@
      <br> 
      <form method="POST" action="" novalidate>
       <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+      <h5>Ingresa tu nombre:</h5>
+      {{render_field1(form.username)}}
         <table>
           <tr>
             <td>{{ render_field(form.band_A) }}</td>
@@ -44,7 +46,7 @@
         {% if messages %}
           <ul class=flashes>
             {% for message in messages %}
-              <li>{{ message }}</li>
+            <p style="color: green;">{{ message }}</p>
             {% endfor %}
           </ul>
         {% endif %}

@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, flash, make_response
-from flask_wtf import FlaskForm
-from wtforms import SelectField, RadioField, validators
 from collections import namedtuple
 from flask_wtf.csrf import CSRFProtect
+from flask import flash
 import forms
 app = Flask(__name__)
 
@@ -28,7 +27,9 @@ colors = {
 @app.route('/', methods=['GET', 'POST'])
 def resistenciaForm():
     form = forms.ResistanceForm(request.form)
+
     if request.method == 'POST' and form.validate():
+        user=form.username.data
         bandA_color = form.band_A.data
         bandA_num = bandNum(bandA_color)
         bandB_color = form.band_B.data
@@ -54,13 +55,15 @@ def resistenciaForm():
         result.tolerancia = tolerancia
         result.min=resMin
         result.max=resMax
-        
+        succes_message="Gracias por usar nuestra calculadora {} espero te haya servido la informacion".format(user)
+        flash(succes_message)
+
         response = make_response(render_template('calculate.html', form=form, result=result, 
                                                   bandA_color=bandA_color, bandA_nom=bandA_nom,
                                                   bandB_color=bandB_color, bandB_nom=bandB_nom,
                                                   bandC_color=bandC_color, bandC_nom=bandC_nom,
                                                   bandD_color=bandD_color,bandD_nom=bandD_nom,
-                                                  tolerancia=tolerancia,
+                                                  tolerancia=tolerancia,user=user,
                                                   resMin=resMin,
                                                   resMax=resMax
                                                   ))

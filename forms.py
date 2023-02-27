@@ -60,7 +60,7 @@ class ResistanceForm(Form):
               ('green', 'Verde'), ('blue', 'Azul'), ('purple', 'Morado'), ('gray', 'Gris'), ('white', 'Blanco')]
     tolerancia = [('gold', 'Dorado'), ('silver', 'Plateado')]
 
-
+    username=StringField('Usuario',[ validators.DataRequired(message='El usuario es requerido')])
     band_A = SelectField('Banda A', choices=colors, validators=[validators.DataRequired(message='La banda A es requerida')])
     band_B = SelectField('Banda B', choices=colors, validators=[validators.DataRequired(message='La banda B es requerida')])
     band_C = SelectField('Banda C', choices=colors + [('gold', 'Dorado'), ('silver', 'Plateado')], 
