@@ -26,7 +26,7 @@ colors = {
 }
 
 @app.route('/', methods=['GET', 'POST'])
-def index():
+def resistenciaForm():
     form = forms.ResistanceForm(request.form)
     if request.method == 'POST' and form.validate():
         bandA_color = form.band_A.data
